@@ -31,6 +31,11 @@ namespace WebApplication1
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = Configuration["CacheConnection"];
+                options.InstanceName = Configuration["CacheInstanceName"];
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
